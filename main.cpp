@@ -200,6 +200,11 @@ int main()//return type, function name
 				//code
 			}
 		                                      
+			//do while loop for doing something at least once
+			//it'll keep do, untill while is true
+			do {} while (true);
+
+			//break, continue(skip this round of the loop)
 
 
 
