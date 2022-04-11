@@ -206,7 +206,8 @@ int main()//return type, function name
 
 			//break, continue(skip this round of the loop)
 
-
+			int printOut = guess == answer ? printf("lol") : printf("haha");
+			//it's a question, is guess == answer? if yes, print lol, if no print haha, assigned to printOut
 
 
 
