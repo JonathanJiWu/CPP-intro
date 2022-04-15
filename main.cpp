@@ -209,9 +209,100 @@ int main()//return type, function name
 			int printOut = guess == answer ? printf("lol") : printf("haha");
 			//it's a question, is guess == answer? if yes, print lol, if no print haha, assigned to printOut
 
+			//array, vector and templatized array
+			int nums[5]; //statically sized
+			int moreNums[] = { 11, 344, 43, 55 };
+			int oneNum = moreNums[2];
+
+			//vector are dynamically sized
+			 
+
+			//# Inline fucntion
+			// When the program executes the function call instruction the CPU stores the memory address of the instruction following the function call, 
+			// copies the arguments of the function on the stack and finally transfers control to the specified function. 
+			// The CPU then executes the function code, stores the function return value in a predefined memory location/register and returns control to the calling function. 
+			// This can become overhead if the execution time of function is less than the switching time from the caller function to called function (callee). 
+			// For functions that are large and/or perform complex tasks, the overhead of the function call is usually insignificant compared to the amount of time the function takes to run. 
+			// However, for small, commonly-used functions, the time needed to make the function call is often a lot more than the time needed to actually execute the function’s code. 
+			// This overhead occurs for small functions because execution time of small function is less than the switching time.
+			// 
+			//reduce the function call overhead, only a request to the compiler
+			// 
+			// Only when you want the function to be defined in a header
+			//if you define a function in a header you will need to declare it inline. Otherwise you will get linker errors about multiple definitions of the function.
+
+			//# const function
+			//The idea of const functions is not to allow them to modify the object on which they are called. or call any non-const member functions (as they may modify the object).
+			//When a function is declared as const, it can be called on any type of object. Non-const functions can only be called by non-const objects. 
+			//const class objects can only explicitly call const member functions
+			//append the const keyword to the function prototype, after the parameter list, but before the function body:
+			int getValue() const { return m_value; } // note addition of const keyword after parameter list, but before function body
+			//Best practice: Make any member function that does not modify the state of the class object const, so that it can be called by const objects.
+
+			//# Pass by lvalue reference: passing a class argument by value causes a copy of the class to be made (which is slow) -- most of the time, we don’t need a copy, 
+			//a reference to the original argument works just fine, and is more performant because it avoids the needless copy. 
+			//We typically make the reference const in order to ensure the function does not inadvertently change the argument, and to allow the function to work with R-values (e.g. literals), 
+			//which can be passed as const references, but not non-const references.
+			void printValue(std::string& y) // type changed to std::string&
+			{
+				std::cout << y << '\n';
+			} // y is destroyed here
+
+			int main()
+			{
+				std::string x{ "Hello, world!" };
+
+				printValue(x); // x is now passed by reference into reference parameter y (inexpensive)
+
+				return 0;
+			}
+			//the type of parameter y has been changed from std::string to std::string& (an lvalue reference).
+			//Now, when printValue(x) is called, lvalue reference parameter y is bound to argument x.
+			//Binding a reference is always inexpensive, and no copy of x needs to be made.
+			//Because a reference acts as an alias for the object being referenced, when printValue() uses reference y, it’s accessing the actual argument x(rather than a copy of x).
+
+			//# List initialization
+			void fun(double val, int val2) {
+
+				int x2 = val;    // if val == 7.9, x2 becomes 7 (bad)
+
+				char c2 = val2;  // if val2 == 1025, c2 becomes 1 (bad)
+
+				int x3{ val };    // error: possible truncation (good)
+
+				char c3{ val2 };  // error: possible narrowing (good)
+
+				char c4{ 24 };    // OK: 24 can be represented exactly as a char (good)
+
+				char c5{ 264 };   // error (assuming 8-bit chars): 264 cannot be 
+								 // represented as a char (good)
+
+				int x4{ 2.0 };    // error: no double to int value conversion (good)
+
+				//# trailing return type, C++ 11
+				//these two declarations are compatible :
+				int foo();
+				auto foo() -> int;
+
+			}
 
 
+			//static member function
+			class Something
+			{
+			private:
+				static int s_value;
+			public:
+				static int getValue() { return s_value; } // static member function
+			};
 
+			int Something::s_value{ 1 }; // initializer
+
+			int main()
+			{
+				std::cout << Something::getValue() << '\n';
+			}
+			//static member functions are not attached to a particular object, they can be called directly by using the class name and the scope resolution operator
 }
 
 //all variables goes into memories
