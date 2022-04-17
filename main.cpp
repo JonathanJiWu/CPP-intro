@@ -303,6 +303,55 @@ int main()//return type, function name
 				std::cout << Something::getValue() << '\n';
 			}
 			//static member functions are not attached to a particular object, they can be called directly by using the class name and the scope resolution operator
+
+			//# source code => code
+
+			//# instruction set == machine language => 10101010 01001010
+			//0 and 1s are binary digit, or bit
+			//x32 => CPU can only process 32 bit long instruction
+			//x86 CPU has instructions can be variable length
+
+			//# assembly language
+			//in AL each instruction is identified by a short abbreviation, names, number => mov al, 061h
+			//assembler translate AL into machine language
+			//fast but still hard to read
+
+			//# highlevel language
+			//C++ => a = 97
+			//compiling or interpreting to translate high-level language into machine code
+			//compiler read source code and produce standalone executable program that can be run, need once
+			//programs can be compiled for many different systems, no need to change the program, just compile for the system
+			
+			//# language standard
+			//C++20 => new standard released in 2020
+
+			//# C++ philosophy => trust the programmer
+			
+			//# compiler goes through each .cpp and does two things:
+			//1. check syntax error
+			//2. translate source code into machine language file called an object file(name.o or name.obj)
+			//each .cpp file will produce a .obj file
+
+			//# linking object files and libraries
+			//linker kicks in after compiler created obj file(s)
+			//1. combine all obj files into one single executable program
+			//2. link library files, iostream library is a part of C++ standard library(std)
+			//3. makes sure cross file dependencies are resolved properly
+
+			//# project is a container holds all of the source code files
+			//# solution is a container holds one or more related projects
+			//( if you were writing a game and wanted to have a separate executable for single player and multiplayer, you’d need to create two projects.)
+
+			//# VS, F7 to compile, F5 debug
+			//when code file is compiled by VS, it cache the resulting .obj file,That way, if the program is compiled again in the future, any code file that hasn’t been modified doesn’t need to be recompiled -- the cached object file from last time can be reused. 
+			//Clean: removes all cached obj
+			// 
+			//build configuration(build target): collection of project settings that determines how your IDE will build your project
+			//debug configuration turns off all optimizations
+			//release configuration, optimized for size and performance
+
+			//# statement => type of instruction that causes the program to perform some action
+
 }
 
 //all variables goes into memories
