@@ -361,6 +361,24 @@ int main()//return type, function name
 			//type of a variable must be known at compile-time (when the program is compiled), and that type can not be changed without recompiling the program. 
 
 			//use variables to access memory. Variables have an identifier, a type, and a value
+
+			//# Brace initialization has the added benefit of disallowing “narrowing” conversions. This means that if you try to use brace initialization to initialize a variable with a value it can not safely hold, the compiler will throw a warning or an error.
+
+			//cout stands for “character output”.
+			// insertion operator (<<) shows the direction that data is moving
+			//endl stands for “end line”. cause the cursor to move to the next line of the console,  “flushes” the output (makes sure that it shows up on the screen immediately). 
+			//std::cout often flushes output anyway
+			// ‘\n’ character moves the cursor to the next line, preferred 
+			//std::cin (“character input”) reads input from keyboard using the extraction operator (>>). shows the direction that data is moving
+			//The input must be stored in a variable to be used.
+			//possible to input more than one value on a single line:
+			std::cout << "Enter two numbers separated by a space: ";
+
+			int x{ }; // define variable x to hold user input (and zero-initialize it)
+			int y{ }; // define variable y to hold user input (and zero-initialize it)
+			std::cin >> x >> y; // get two numbers and store in variable x and y respectively
+
+			std::cout << "You entered " << x << " and " << y << '\n';
 }
 
 //all variables goes into memories
