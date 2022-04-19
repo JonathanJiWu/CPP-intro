@@ -352,6 +352,15 @@ int main()//return type, function name
 
 			//# statement => type of instruction that causes the program to perform some action
 
+			//# ~constructor-name(); => destructor\
+			//A destructor function is called automatically when the object goes out of scope
+
+			// If you ever write code that is so complex that needs a comment to explain what a statement is doing, you probably need to rewrite your statement, not comment it.
+
+			//Instantiation is a fancy word that means the object will be created and assigned a memory address.
+			//type of a variable must be known at compile-time (when the program is compiled), and that type can not be changed without recompiling the program. 
+
+			//use variables to access memory. Variables have an identifier, a type, and a value
 }
 
 //all variables goes into memories
