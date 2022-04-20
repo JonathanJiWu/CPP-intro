@@ -391,6 +391,11 @@ int main()//return type, function name
 			//# keywords, 92 words, special meanings
 			//name of a variable (or function, type, or other kind of item) is called an identifier
 
+			//# operators
+			//Parenthesis first, then Exponents, then Multiplication & Division, then Addition & Subtraction. This ordering is sometimes abbreviated PEMDAS,
+
+			//# 
+
 
 
 
