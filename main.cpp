@@ -379,6 +379,21 @@ int main()//return type, function name
 			std::cin >> x >> y; // get two numbers and store in variable x and y respectively
 
 			std::cout << "You entered " << x << " and " << y << '\n';
+
+			//# uninitialized variables
+			//C++ does not initialize most variables to a given value automatically
+			//Thus when a variable is assigned a memory location by the compiler, 
+			//the default value of that variable is whatever (garbage) value happens to already be in that memory location
+			//uninitialized variable == garbage value, always initialize
+
+			//# undefined behavior, can be anything, caused by uninitialized variables
+
+			//# keywords, 92 words, special meanings
+			//name of a variable (or function, type, or other kind of item) is called an identifier
+
+
+
+
 }
 
 //all variables goes into memories
