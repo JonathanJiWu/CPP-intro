@@ -394,8 +394,11 @@ int main()//return type, function name
 			//# operators
 			//Parenthesis first, then Exponents, then Multiplication & Division, then Addition & Subtraction. This ordering is sometimes abbreviated PEMDAS,
 
-			//# 
-
+			//# expression
+			int x{ 2 + 3 };
+			//type identifier { expression }; => in whole, it's a statement
+			//Statement is like a command to the computer. 
+			//Expression is like a calculation. 
 
 
 
