@@ -1,6 +1,7 @@
 #include<iostream>//input/output stream, for pre-processer, before compile
 #include<cmath>
 #include<climits>
+#include<vector>
 #define XXX 10//another way to declare const variables
 
 void functionOne()//function identifier (name)
@@ -414,6 +415,33 @@ int main()//return type, function name
 			//it also helps prevent memory leaks. 
 
 			//resizing a vector is computationally expensive
+
+			//# <> template, templatized class (generic in C#)
+			std::vector<int> data = { 1, 2, 3 };
+
+			data.push_back(12);
+
+			std::cout << data[3] << std::endl;
+			std::cout << data[data.size() - 1] << std::endl;
+
+			std::vector<int> values = { 1, 3, 5 };
+			//# range based for loop
+			for (int value : values)//no i needed
+			{
+				std::cout << value << std::endl;
+			}
+			std::vecotr<int>::iterator it = values.begin();
+
+
+			//range based for loop can be used on vector is because vector has iterator built-in
+
+			//# function, parameters and arguments
+			//function called => parameters of the function are created as variables => values of each of the arguments is copied into the matching parameter
+			//that process is called [pass by value]
+			//the argument is essentially just an initializer for the parameter, and initializers can be any valid expression
+
+
+
 
 
 }
