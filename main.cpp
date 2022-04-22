@@ -400,6 +400,20 @@ int main()//return type, function name
 			//Statement is like a command to the computer. 
 			//Expression is like a calculation. 
 
+			//# function
+			//nested function is not allowed
+			//functions cannot be defined inside other functions in C++
+
+			//# vector
+			//functions cannot be defined inside other functions.
+			//do not need to include the array length at compile time.
+			//because std::vector will dynamically allocate memory for its contents as requested.
+			//When a vector variable goes out of scope, 
+			//it automatically deallocates the memory it controls (if necessary). 
+			//This is not only handy (as you don’t have to do it yourself), 
+			//it also helps prevent memory leaks. 
+
+			//resizing a vector is computationally expensive
 
 
 }
