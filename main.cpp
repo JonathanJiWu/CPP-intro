@@ -440,6 +440,34 @@ int main()//return type, function name
 			//that process is called [pass by value]
 			//the argument is essentially just an initializer for the parameter, and initializers can be any valid expression
 
+			//# local parameters
+			//function parameters & variables defined inside a function body are called local variables
+
+			//# lifetime, a runtime property, between creation and destruction
+			//objects must be created and initialized no later than the point of definition, 
+			//and destroyed no earlier than the end of the set of the curly braces in which they are defined 
+			//(or, for function parameters, at the end of the function).
+
+			//Most often, local variables are created when the function is entered, and destroyed in the opposite order of creation 
+			//when the function is exited
+
+			// When an identifier can be accessed, we say it is in scope, can not be accessed => out of scope
+			//Scope is a compile-time property => compiler error
+
+			//A local variable’s scope begins at the point of variable definition, 
+			//and stops at the end of the set of curly braces in which they are defined
+			//function parameters => end of the function
+
+			//# forward declaration, tell the compiler about the existence of an identifier before defining the identifier.
+			//In the case of functions, this allows us to tell the compiler about the existence of a function before we define the function’s body.
+
+			//function prototype, return type, name, parameters, no function body, terminated with a semicolon.
+
+			//forget define function: can compile, linker error
+
+
+
+
 
 
 
