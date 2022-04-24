@@ -489,23 +489,47 @@ int main()//return type, function name
 			//avoid Object-like macros(#define MY_NAME "Alex") use const instead
 
 			//Conditional compilation
-#include <iostream>
+			#include <iostream>
 
-#define PRINT_JOE
+			#define PRINT_JOE
+
+						int main()
+						{
+						#ifdef PRINT_JOE
+										std::cout << "Joe\n"; // will be compiled since PRINT_JOE is defined
+						#endif
+
+						#ifdef PRINT_BOB
+										std::cout << "Bob\n"; // will be ignored since PRINT_BOB is not defined
+						#endif
+
+							return 0;
+						}
+
+
+			//Conditional compilation
+			#include <iostream>
+
+			#define PRINT_JOE
 
 			int main()
-			{
-#ifdef PRINT_JOE
+				{
+			#ifdef PRINT_JOE
 				std::cout << "Joe\n"; // will be compiled since PRINT_JOE is defined
-#endif
+			#endif
 
-#ifdef PRINT_BOB
+			#ifdef PRINT_BOB
 				std::cout << "Bob\n"; // will be ignored since PRINT_BOB is not defined
-#endif
+			#endif
 
 				return 0;
-			}
+				}
 
+			//Because PRINT_JOE has been #defined, the line std::cout << "Joe\n" will be compiled. Because PRINT_BOB has not been #defined, the line std::cout << "Bob\n" will be ignored.
+
+			//Source files should #include their paired header file
+
+			//Use double quotes to include header files that you’ve written or are expected to be found in the current directory. Use angled brackets to include headers that come with your compiler, OS, or third-party libraries you’ve installed elsewhere on your system.
 
 
 
