@@ -465,6 +465,48 @@ int main()//return type, function name
 
 			//forget define function: can compile, linker error
 
+			//# multiple files, the compiler compiles each file individually. does not know about the contents of other code files, 
+			//or remember anything it has seen from previously compiled code files. that's why we are using forward declaration
+
+			//# naming collision
+			//namespace
+			//Explicit namespace qualifier std::
+			//:: => scope resolution operator,  If no identifier to the left of the :: symbol is provided, the global namespace is assumed.
+			//don't use using namespace blahblah; violate the reason why namespaces were added in the first place.
+
+			//translation => compilation => linking
+			//phase 4 of translation == preprocessor{manipulates the text in each code file}
+			//Preprocessor directives (often just called directives) == instructions that start with a # symbol 
+			//and end with a newline (!= semicolon).
+			//all text changes made by the preprocessor happen temporarily in-memory each time the code file is compiled.
+			
+			//When you #include a file, the preprocessor replaces the #include directive with the contents of the included file.
+			//The included contents are then preprocessed(along with the rest of the file), and then compiled.
+
+			//#define directive can be used to create a macro. a macro is a rule that defines how 
+			//input text is converted into replacement output text.
+
+			//avoid Object-like macros(#define MY_NAME "Alex") use const instead
+
+			//Conditional compilation
+#include <iostream>
+
+#define PRINT_JOE
+
+			int main()
+			{
+#ifdef PRINT_JOE
+				std::cout << "Joe\n"; // will be compiled since PRINT_JOE is defined
+#endif
+
+#ifdef PRINT_BOB
+				std::cout << "Bob\n"; // will be ignored since PRINT_BOB is not defined
+#endif
+
+				return 0;
+			}
+
+
 
 
 
