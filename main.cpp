@@ -531,6 +531,22 @@ int main()//return type, function name
 
 			//Use double quotes to include header files that you’ve written or are expected to be found in the current directory. Use angled brackets to include headers that come with your compiler, OS, or third-party libraries you’ve installed elsewhere on your system.
 
+			//To maximize the chance that missing includes will be flagged by compiler, order your #includes as follows:
+
+			//1. The paired header file
+			//2. 	Other headers from your project
+			//3. 	3rd party library headers
+			//4. 	Standard library headers
+			//The headers for each grouping should be sorted alphabetically.
+
+			//header guards(include guards)
+			//#pragma once
+
+			//1: Define your goal
+			//2: Define requirements(budget, time, MVP)
+			//3: Define tools, targets, and backup plan
+			//4: Break hard problems down into easy problems(top down method of problem solving)
+			//5: Figure out the sequence of events
 
 
 
