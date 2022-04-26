@@ -548,7 +548,17 @@ int main()//return type, function name
 			//4: Break hard problems down into easy problems(top down method of problem solving)
 			//5: Figure out the sequence of events
 
+			//# debug
+			//error types: syntax errors, and semantic errors (logic errors).
 
+			//All bugs stem from a simple premise: Something that you thought was correct, isn’t.
+
+			//# Once a problem has been identified, debugging the problem generally consists of five steps :
+			//	Find the root cause of the problem(usually the line of code that’s not working)
+			//	Ensure you understand why the issue is occurring
+			//	Determine how you’ll fix the issue
+			//	Repair the issue causing the problem
+			//	Retest to ensure the problem has been fixed and no new problems have emerged
 
 
 
