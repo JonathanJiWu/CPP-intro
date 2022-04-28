@@ -565,6 +565,8 @@ int main()//return type, function name
 			//2. Validating your code flow:
 				//=> program is calling a function too many or too few times (including not at all).
 			//#3: Printing values
+				//=> check variable values using cerr to trace down and locate the problem
+
 
 
 			//#use std::cerr instead of std::cout 
