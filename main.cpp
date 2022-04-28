@@ -566,7 +566,42 @@ int main()//return type, function name
 				//=> program is calling a function too many or too few times (including not at all).
 			//#3: Printing values
 				//=> check variable values using cerr to trace down and locate the problem
+				//Visual Studio debug can just watch values
+			//4. make your debugging statements conditional using preprocessor directives
+				//=> not seeing myself doing this, too much clutter
+			//5. using a logger
+				// send your debugging information to a log file, 
+			//A log file is a file (normally stored on disk) that records events that occur in software. 
+			//The process of writing information to a log file is called logging. 
+			//the information written to a log file is separated from your program’s output
+			//easily sent to other people for diagnosis
+			//third-party logging tools available ie. plog
+			#include <iostream>
+			#include <plog/Log.h> // Step 1: include the logger headers
+			#include <plog/Initializers/RollingFileInitializer.h>
 
+			int getUserInput()
+			{
+				PLOGD << "getUserInput() called"; // PLOGD is defined by the plog library
+
+				std::cout << "Enter a number: ";
+				int x{};
+				std::cin >> x;
+				return x;
+			}
+
+			int main()
+			{
+				plog::init(plog::debug, "Logfile.txt"); // Step 2: initialize the logger
+
+				PLOGD << "main() called"; // Step 3: Output to the log as if you were writing to the console
+
+				int x{ getUserInput() };
+				std::cout << "You entered: " << x;
+
+				return 0;
+			}
+			//howto: get the repo on local disk, set the somewhere\plog-master\include\ directory as an include directory inside your IDE. 
 
 
 			//#use std::cerr instead of std::cout 
@@ -579,8 +614,33 @@ int main()//return type, function name
 
 			//std::cerr is unbuffered, which means anything you send to it will output immediately
 
+			// At any point in time while your program is running, the program is keeping track of a lot of things: 
+			// the value of the variables you’re using, 
+			//which functions have been called (so that when those functions return, the program will know where to go back to), and the current point of execution within the program (so it knows which statement to execute next). 
+			//All of this tracked information is called your PROGRAM STATE (or just state, for short).
 
+			//visual Studio upper letter keyboard SHORTCUT: ctrl + shift + U
 
+			////downsides: all previous tactics require altering your code
+			//# debugger: a program that allows us to control how another program executes and examine the program state while that program is running. 
+				//The power behind the debugger is twofold: the ability to precisely control execution of the program, 
+				//and the ability to view (and modify, if desired) the program’s state.
+
+			//gdb, were separate programs that had command-line interfaces
+			//turbo debugger standalone, but came with their own “graphical” front ends to make working with them easier
+			//Most modern IDEs available these days have an integrated debugger
+				//same interface as the code editor
+
+			//# stepping, set of debugger features let us execute(step through) code statement by statement
+				//# step into, F11, see the whole flow of the statements,watch every line execute, 
+				//yellow marker indicates the line will be executed next
+
+			//# step over F10, skip function calls, when you are sure they already work
+
+			//# step out, executes all remaining code in the function currently being executed, and then returns control to you when the function has returned.
+				//accidentally stepped into a function that you don’t want to debug
+
+			//can only step forward, restart if stepped pass
 
 
 }
