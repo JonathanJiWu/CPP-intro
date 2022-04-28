@@ -560,6 +560,23 @@ int main()//return type, function name
 			//	Repair the issue causing the problem
 			//	Retest to ensure the problem has been fixed and no new problems have emerged
 
+			//# debugging tactic
+			//1. Commenting out your code
+			//2. Validating your code flow:
+				//=> program is calling a function too many or too few times (including not at all).
+			//#3: Printing values
+
+
+			//#use std::cerr instead of std::cout 
+			// std::cout may be buffered, which means there may be a pause between when you ask std::cout 
+			// to output information and when it actually does. If you output using std::cout and then 
+			// your program crashes immediately afterward, std::cout may or may not have actually output yet. 
+			
+			// To "flush" is to flush (or empty) the stream's buffer (character cache).
+			//cout.flush() you are only flushing std::cout's stream buffer.
+
+			//std::cerr is unbuffered, which means anything you send to it will output immediately
+
 
 
 
