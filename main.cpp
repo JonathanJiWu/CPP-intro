@@ -642,6 +642,25 @@ int main()//return type, function name
 
 			//can only step forward, restart if stepped pass
 
+			//break point & running
+			//running to cursor: ctrl + F10, program will run to here and stop
+			//=> can step through it from here, continue will running it as per normal (F5)
+
+			//breakpoints
+			//F9 or click on left of the line nums
+			//breakpoint return control to IDE unlike run to cursor
+			//and breakpoint will persist until removal 
+			//and caused the program to stop as many times as that line was executed
+
+			//set next statement, jumping, skip a function
+
+			//# watch variables
+			//can also evaluate, enter statements into watch window
+			//# watch all local variable's value[wow what! so cool]
+
+			//# call stack
+			// call stack is a list of all the active functions 
+			//that have been called to get to the current point of execution.
 
 }
 
