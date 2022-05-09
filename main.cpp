@@ -658,9 +658,25 @@ int main()//return type, function name
 			//can also evaluate, enter statements into watch window
 			//# watch all local variable's value[wow what! so cool]
 
+			//watch window can evaluate expressions too
+			//enter expressions to see new evaluates
+
+			//Identifiers in watched expressions will evaluate to their current values
+			//actual value of the expression will show when the program is executed to that point
+
 			//# call stack
 			// call stack is a list of all the active functions 
 			//that have been called to get to the current point of execution.
+			
+			//functions are removed from the call stack when it returned.
+
+			//# refactoring: structural changes without changing the behavior
+			//makes the program more organized, modular, performant
+
+			//# defensive programming
+			//# unit testing: small units of source code are tested to determine whether they are correct.
+			//# static analysis tools (linters) are programs that analyze your code to identify specific semantic issues
+
 
 }
 
