@@ -677,6 +677,38 @@ int main()//return type, function name
 			//# unit testing: small units of source code are tested to determine whether they are correct.
 			//# static analysis tools (linters) are programs that analyze your code to identify specific semantic issues
 
+			//# types, void
+			//void == no type, function do not return value
+
+			//# memory & type size
+			//compiler knows what size the object is based on it's type, we don't need to interact with memory directly
+
+			//exact size of type of objects is depend on compiler & cup architecture.
+			//C++ only guarantees that each fundamental data types will have a minimum size
+
+			//sizeof
+			std::cout << "bool:\t\t" << sizeof(bool) << " bytes\n";
+
+			//modern cpu are optimazed to process certain size of data, types uses less memories aren't always faster than larger ones
+
+			//signed ints
+			//short
+			//int
+			//long
+			//long long
+			signed long long sll;//no
+			signed long long int slli;//no
+			long long ll;//yes
+
+			//signed int range
+			//8 bit signed - 128 to 127 (256)
+			//	16 bit signed - 32, 768 to 32, 767
+			//	32 bit signed - 2, 147, 483, 648 to 2, 147, 483, 647
+			//	64 bit signed - 9, 223, 372, 036, 854, 775, 808 to 9, 223, 372, 036, 854, 775, 807
+
+			//int overflow with cause undefined behavior
+
+			//int division always produce int result, any fractional is dropped, not rounded
 
 }
 
