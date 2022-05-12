@@ -731,6 +731,67 @@ int main()//return type, function name
 			//	std::uint32_t	4 byte unsigned	0 to 4, 294, 967, 295
 			//	std::int64_t	8 byte signed - 9, 223, 372, 036, 854, 775, 808 to 9, 223, 372, 036, 854, 775, 807
 			//	std::uint64_t	8 byte unsigned	0 to 18, 446, 744, 073, 709, 551, 615
+
+			//not guaranteed to be defined on all architecture, only 8/16/32/64-bit
+
+			//# Fast and least integers
+			std::int_fast32_t jjj;//=> fastest signed integer type that’s at least 32 bits, (8, 16, 32, or 64)
+			std::uint_least32_t fff; //=>will give you the smallest unsigned integer type that’s at least 32 bits.
+			//not many programmers actually use them
+			// size of the fast/least integers can vary =>  different behaviors on architectures where they resolve to different sizes
+
+			//For consistency, it’s best to avoid std::int8_t and std::uint8_t (and the related fast and least types) altogether (use std::int16_t or std::uint16_t instead).
+
+			//better to be correct than fast, better to fail at compile time than runtime 
+
+			//# scientific notation, concise, shorthand for length num
+			//So in standard scientific notation, we prefer to keep trailing zeros after a decimal point, because those digits impart useful information about the precision of the number.
+			//but in C++, there's no difference
+
+			//34.50 => 3.45e1
+			//0.004000 => 4e-1
+			//123.005 => 1.23005e2
+		
+			//# floating point nums, float, double, and long double, always signed
+			//When using floating point literals, always include at least one decimal place (even if the decimal is 0).
+			float z{5.0f}; // 5.0 is a floating point literal, f suffix means float type
+			//floating point literals default to type double.An f suffix is used to denote a literal of type float.
+
+			//std::cout has a default precision of 6, truncate anything after that.
+			//# override default precision
+			#include <iomanip> // for output manipulator std::setprecision()
+			std::cout << std::setprecision(16); // show 16 digits of precision
+
+			//Favor double over float
+			//Rounding errors aren’t the exception -- they’re the rule. Never assume your floating point numbers are exact.
+			//Avoid division by 0 altogether, even if your compiler supports it.
+
+			//# boolean, named after its inventor, George Boole, true or false
+			// Booleans actually store integers, they are considered an integral type.(1 true, 2 false)
+			std::cout << std::boolalpha; // print bools as true or false, std::noboolalpha to turn it back off.
+			bool b1 = 4; // copy initialization allows implicit conversion from int to bool, this is true, 0 will be false
+			// std::cin only accepts two inputs for boolean variables: 0 and 1 (not true or false)
+
+			//# condition expression, an expression that evaluates to a Boolean value.
+
+			//# chars, data type is an integral type, meaning the underlying value is stored as an integer
+			//We can also output char literals directly :
+			cout << 'c';
+
+			//Escape sequences, 
+			std::cout << "First line\nSecond line\n";
+			std::cout << "First part\tSecond part";
+			//\’ prints a single quote
+			//\” prints a double quote
+			//\\ prints a backslash
+
+
+
+
+
+
+
+
 }
 
 //all variables goes into memories
