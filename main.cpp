@@ -785,6 +785,69 @@ int main()//return type, function name
 			//\” prints a double quote
 			//\\ prints a backslash
 
+			//std::endl vs ‘\n’
+			//std::endl moves cursor to the nextline and flushes the output, std::cout flushes anyway
+
+			//* type conversion, static_cast
+
+			//implict type converstion: compiler does it(like when function takes int, you passed in a double, compiler will warn)
+			//int to double is always safe
+
+			//static_cast<new_type> (expression): value of expression is input, return it as new_type
+			//inside < > is always type, parameterizable type
+			static_cast<int>(5.5);// explicitly convert double value 5.5 to an int
+
+			char ch{ 97 }; // 97 is ASCII code for 'a'
+			std::cout << ch << " has value " << static_cast<int>(ch) << '\n'; // print value of variable ch as an int
+			//console: a has value 97
+			//variable itself stays char, value is converted
+
+			//cast from unsigned int to int will yield unpredictable results if the value of the unsigned int is greater than the maximum value a signed int can hold.
+			//The static_cast operator will produce undefined behavior if the value being converted doesn’t fit in range of the new type.
+
+			//Not all platforms implement char as 8 bits, the standard dictates that a char must be at least 8 bits, but doesn't require it to be.
+			//int8_t was therefore added in order to avoid confusion, it's guaranteed to be exactly 8 bits but a platform specific compiler isn't required to implement it.
+
+			//Char isn’t specified as signed or unsigned, it’s up to the implementation.
+			//char: ASCII character.
+
+			//	unsigned char : Extended ASCII character. (rare)
+
+			//	int8_t : Integer value between - 128 and 127.
+
+			//	uint8_t : Integer value between 0 and 255
+
+			//* string, aren’t a fundamental type (they’re actually a compound type
+			#include <string> // allows use of std::string
+			std::string myName{}; // empty string
+			std::string myName{ "Alex" }; // initialize myName with string literal "Alex"
+			myName = "John"; // assign variable myName the string literal "John"
+
+			std::cout << "Enter your full name: ";
+			std::string name{};
+			std::cin >> name; // this won't work as expected since std::cin breaks on whitespace
+			//operator>> only returns characters up to the first whitespace it encounters.
+
+			std::cout << "Enter your full name: ";
+			std::string name{};
+			std::getline(std::cin >> std::ws, name); // read a full line of text into name
+			//td::ws input manipulator tells std::cin to ignore any leading whitespace.
+
+
+			//std::cin not only captures the value, it also captures the newline character ('\n') that occurs when you hit the enter key. 
+			std::cout << myName << " has " << myName.length() << " characters\n";
+			//std::string::length() returns an unsigned int
+
+			//# literal constants
+
+
+
+
+
+
+
+
+
 
 
 
