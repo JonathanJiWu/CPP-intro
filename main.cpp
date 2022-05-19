@@ -839,6 +839,23 @@ int main()//return type, function name
 			//std::string::length() returns an unsigned int
 
 			//# literal constants
+			return 5; // 5 is an integer literal
+			bool myNameIsAlex{ true }; // true is a boolean literal
+			std::cout << 3.4; // 3.4 is a double literal
+			//value can not be changed dynamically => constants
+			//The type of a literal is assumed from the value and format of the literal itself.
+
+			float f{ 4.1 }; // warning: 4.1 is a double literal, not a float literal
+
+			//prefix your literal with a 0 (zero), to use octal literal
+			int x{ 012 }; // 0 before the number means this is octal
+			//prints 10
+
+			int x{ 0xF }; // 0x before the number means this is hexadecimal
+			//prints 15
+
+
+
 
 
 
