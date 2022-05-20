@@ -854,6 +854,32 @@ int main()//return type, function name
 			int x{ 0xF }; // 0x before the number means this is hexadecimal
 			//prints 15
 
+			//C++14 compiler
+			x = 0b010'1010;     // assign binary 0000 0000 0000 1010 to the variable
+			long value{ 2'132'673'462 }; // much easier to read than 2132673462, dismal 
+
+			std::cout << std::hex << x << '\n'; // print hexadecimal, std::oct, std::dec
+
+			//print binary, use srd::bitset
+			std::cout << std::bitset<4>{ 0b1010 } << '\n'; // create a temporary std::bitset and print it
+
+			//# symbolic constant, must be initalized, can be initialize form another variable
+			const double constNum{ 9.99 };
+
+			//runtime const, the value is not known untill runtime
+			//compile time const, the value is known when compilation
+
+			constexpr double gravity{ 9.8 }; // ok, the value of 9.8 can be resolved at compile-time
+			//must be a compile-time constant
+
+			//constant expression
+			xx = 3 + 4;
+			constexpr int x{ 3 };
+			constexpr int y{ 4 };
+			std::cout << x + y; // x + y evaluated at compile-time
+
+			//const variable names maybe all cap
+
 
 
 
