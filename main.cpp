@@ -880,6 +880,29 @@ int main()//return type, function name
 
 			//const variable names maybe all cap
 
+			//# const function parameter & return values
+			void printInt(const int x)//enlist compiler's help to ensure that parameter's value is not changed inside the function
+			{
+				std::cout << x;
+			}
+			//argument are passed in by value, eigher function changes the value of the parameter is less of of a concern; it's just a copy that will
+			//be destroyed after the function. so don't usually const parameter. But for other kinds of function parameters(pass by reference?): 
+			//changing the value of the parameter will change the value of the argument passed in, use of const is important
+
+			//# return value can also be made const
+			const int GetNum()
+			{
+				return 6;
+			}
+			//however, since the returned value is a copy, there's no point making it const
+
+			//== Best practice: if function is passing by value, the parameter shouldn't be made const;
+			//don't use const with return by value
+
+			//object-like preprocessor macro define VS symbolic const
+			//== Best practice: avoid using #define, use const or constexpr variable instead(hard to debug, naming conflict, and weird scoping)
+
+
 
 
 
