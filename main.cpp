@@ -902,9 +902,19 @@ int main()//return type, function name
 			//object-like preprocessor macro define VS symbolic const
 			//== Best practice: avoid using #define, use const or constexpr variable instead(hard to debug, naming conflict, and weird scoping)
 
+			//# magic number: bad practice, 1. no context what they are used for, 2, pose problem if value need to be changed
+			constexpr int maxStudentPerSchool{ numCLassrooms * 30 };
+			//disambiguate magic numbers:
+			constexpr int maxStudentsPerClass{ 30 }; // now obvious what 30 is
+			constexpr int maxStudentsPerSchool{ numClassrooms * maxStudentsPerClass };
 
+			//sizeof() retruns size_t
+			//size_t is unsigned long long (int64)
 
-
+			//const vs constexpr:
+			//The principal difference between const and constexpr is the time when their initialization values are known (evaluated). 
+			//While the values of const variables can be evaluated at both compile time and runtime, 
+			//constexpr are always evaluated at compile time.
 
 
 
