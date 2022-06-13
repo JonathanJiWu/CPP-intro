@@ -916,18 +916,45 @@ int main()//return type, function name
 			//While the values of const variables can be evaluated at both compile time and runtime, 
 			//constexpr are always evaluated at compile time.
 
+			//5.1 # operator precedence & associativity
+			//operation, operands, operator, operator precedence, levels of precedence, operator associativity, parenthesization
+			//best practice: use parentheses, to make intent clear
 
+			//the precedence and associativity rules only tell us how operators evaluate in relation to other operators. 
+			// It does not tell us anything about the order in which the rest of the expression evaluates.
+			//compound expression operation order is unknown, 
+			std::cout << getValue() + (getValue() * getValue()); // a + (b * c)  The compiler may choose a different evaluation order
+			//don't depend on the order of evaluation
 
+			x = y = z;
+			//Binary operator = has right to left association :
+			//oder: x = (y = z);
 
+			a || b && c || d;
+			//	Binary operator && has higher precedence than || :
+			//a || (b && c) || d;
+			// 
+			//Binary operator || has left to right association :
+			//Final answer : (a || (b && c)) || d;
 
+			//5.2 Arithmetic operators
+			//unary arithmetic operators
+				//+, -
 
+			//binary arithmetic operators, (left and right operand)
+				//+, -, *, /, %
+			//if both operand are int, division of them will drop all fractions(int division)
+			//to do division between ints and keep the fraction using static_cast< >.
 
+			static_cast<double>(x) / y; //will be floating point divistion
 
+			//dividing by 0 will crash program
 
+			//Arithmetic assignment operators
+			x += 4; // add 4 to existing value of x
+			x *= 4; // multiple 4 to existing value of x
 
-
-
-
+			//5.3 Modulus and exponentiation
 
 
 
