@@ -955,9 +955,96 @@ int main()//return type, function name
 			x *= 4; // multiple 4 to existing value of x
 
 			//5.3 Modulus and exponentiation
+			//modulus operator returns the reminder after the int division, only works with int operands, test if a num is evenly divisible by another num
+			//#include <cmath> header pow(num, num1) is exponents, same level of arithmetic precedence, left to right if in one expression
+
+			//5.4 increment/ decrement operators, side effects
+			//++x	Increment x, then return x, prefix, incremented and then evaluated
+			//x++	Copy x, then increment x, then return the copy postfix, copy
+			int x{ 5 };
+			int y = ++x; // x is incremented to 6, x is evaluated to the value 6, and 6 is assigned to y
+
+			int x{ 5 };
+			int y = x++; // x is incremented to 6, copy of original x is evaluated to the value 5, and 5 is assigned to y
+
+			int x{ 5 };
+			int y{ 5 };
+
+			std::cout << ++x << ' ' << --y << '\n'; // prefix, 6 4
+			std::cout << x << ' ' << y << '\n';
+			std::cout << x++ << ' ' << y-- << '\n'; // postfix, 6 4, the copy of x and y sent to cout
+			std::cout << x << ' ' << y << '\n'; // postfix x and y are evaluated again, changed from last line, 7 3
+
+			//best practic: favor prefix version, more performant, less issues
+
+			//# side effect: a function or expression that does anything that persists beyond the life of function or expression itself
+			x = 5; // the assignment operator modifies the state of x, or: side effect or changing the value of x, after the statement has finished evaluating
+			++x; // operator++ modifies the state of x
+			std::cout << x; // operator<< modifies the state of the console
+
+			//unexpected results: 
+			int add(int x, int y)
+			{
+				return x + y;
+			}
+			int x{ 5 };
+			int value{ add(x, ++x) };// 5 + 6, or 6 + 6 It depends on what order your compiler evaluates the function arguments in
+			std::cout << value << '\n'; // value could be 11 or 12, depending on how the above line evaluates!
+			//compiler does not define the order in which function arguments are evaluated
+
+			//ensuring that any variable that has a side effect applied is used no more than once in a given statement.
+
+			//5.5 comma and conditional operators, allows evaluate multiple expression with one expression, left operand and then right, then return
+			//comma has the lowest precedence of all, lower than assignment, make it dangerious
+			z = (a, b); // evaluate (a, b) first to get result of b, then assign that value to variable z.
+			z = a, b; // evaluates as "(z = a), b", so z gets assigned the value of a, and b is evaluated and discarded.
+			//best practice: avoid using comma
+
+			//# conditional operator, ?:, arithmetic if, ternary operator(takes 3 operands)
+			c ? x : y; // If c is nonzero(true) then evaluate x, otherwise evaluate y
+			//(condition) ? expression1 : expression2; //expression2 is not optional.
+
+			if (x > y)
+				larger = x;
+			else
+				larger = y;
+
+			larger = (x > y) ? x : y;//compact code without losing readability
+			//best practice: always parenthesize the conditional part of the conditional operator, consider parenthesizing the whole thing
+			//conditional operator operands are expressions rather than statements
+
+			#include <iostream>	
+
+			int main()
+			{
+				constexpr bool inBigClassroom{ false };
+
+				if (inBigClassroom)
+					constexpr int classSize{ 30 }; //classSize dies at the end of the if statement
+				else
+					constexpr int classSize{ 20 }; //classSize destroyed here
+
+				std::cout << "The class size is: " << classSize; //no more classSize, undefined error
+
+				return 0;
+			}//doesn't compile, classSize is not defined,
+
+			//this is much easier
+			constexpr bool inBigClassroom{ false };
+			constexpr int classSize{ inBigClassroom ? 30 : 20 }; //30 and 20 are just literals, inBigClassroom is expression, can initiate variable
+			std::cout << "The class size is: " << classSize << '\n';
 
 
+			//expressions must match or be convertible
+			constexpr int x{ 5 };
+			std::cout << (x != 5 ? x : "x is 5"); // won't compile
+			//integer, and the other is a string literal, no common type, have to use if/else
+			//most useful when we need a conditional initializer (or assignment) for a variable, or to pass a conditional value to a function.
 
+
+			//5.6 relational operators and floating point comparisons
+			// <, >, <=, >=, ==, !=
+			//# floating point value comparison
 }
 
 //all variables goes into memories
