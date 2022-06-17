@@ -1045,6 +1045,12 @@ int main()//return type, function name
 			//5.6 relational operators and floating point comparisons
 			// <, >, <=, >=, ==, !=
 			//# floating point value comparison
+			//avoid doing ==,!= with floating point operands
+
+
+			//5.7 logical operators
+			//!, &&, ||, true, false
+			//! //! x > y actually evaluates as (!x) > y
 }
 
 //all variables goes into memories
