@@ -1051,6 +1051,27 @@ int main()//return type, function name
 			//5.7 logical operators
 			//!, &&, ||, true, false
 			//! //! x > y actually evaluates as (!x) > y
+			//! 
+			//|| => eigher or both, inclusive or, || is the logical OR operator, it returns true if either of the operands is true
+			//&& => both, return false immediately if the first one is false, without evaluating the second one
+			//called SHORT CIRCUIT EVALUATION, similarly if first operand for || is true, also return true immediately without evaluating second one
+			
+			//mixing && and ||
+			//&& has higher precedence than ||, use parenthesizes to avoid bugs
+			
+			//De Morgan's laws:
+			//!(x && y) == (!x || !y)
+			//! (x || y) == (!x && !y)
+			//according to the truth table, not x or y is logically equivalent to not x or not y
+			
+			//exclusive OR: (XOR), both can not be satisfied at the same time
+			//C++ doesn't have a built-in XOR operator, logical XOR cannot be short circuit evaluated
+			//C++11 introduced the std::bit_xor function, which can be used to implement XOR
+			bool aaa{true};
+			bool bbb{false};
+			if (aaa != bbb) {};// aaa XOR bbb
+			
+			
 }
 
 //all variables goes into memories
