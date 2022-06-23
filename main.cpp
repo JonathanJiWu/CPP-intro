@@ -1070,8 +1070,60 @@ int main()//return type, function name
 			bool aaa{true};
 			bool bbb{false};
 			if (aaa != bbb) {};// aaa XOR bbb
+
+			//6.0 compound statements/blocks
+			//block of statement that is treated as a a single statement by the compiler
+			//begin with {, and ends with }, can be used anywhere a single statement is allowed, no semicolon is needed
 			
+			//# blocks inside of other blocks
+			//functions can't be nested inside other functions, but blocks can nested inside other blocks(outer block, inner block)
 			
+			//execute blocks conditionally(if statements)
+			//if statement executes a single statement/block of statements if the condition evaluates to true
+			
+			//# NESTING LEVEL/NESTING DEPTH
+			//C++ supports 256 levels of nesting, Visual Studio supports 100 ~ 110
+			//BEST PRACTICE: keep nesting level of the function to 3 or less, refactor into subfunctions if need more levels
+
+			//6.2 USER DEFINED NAMESPACES & SCOPE RESOLUTION OPERATOR
+			//# name collision: when two identical identifiers are introduced into the same scope, compiler can't disambiguate which one to use
+			//error: multiple definition of `functionName()';, happens at the point of redefinition, doesn't matter if the function is called
+
+			//#DEFINING NAMESPACES
+			//foo.cpp:
+			namespace foo // define a namespace named foo
+			{
+				// This doSomething() belongs to namespace foo
+				int doSomething(int x, int y)
+				{
+					return x + y;
+				}
+			}
+			//goo.cpp
+			namespace goo // define a namespace named goo
+			{
+				// This doSomething() belongs to namespace goo
+				int doSomething(int x, int y)
+				{
+					return x - y;
+				}
+			}
+
+			//# SCOPE RESOLUTION OPERATOR, ::
+			//tell compiler to look into a particular namespace for an identifier, scope::identifier;
+			int main()
+			{
+				std::cout << foo::doSomething(4, 3) << '\n'; // use the doSomething() that exists in namespace foo
+				std::cout << goo::doSomething(4, 3) << '\n'; // use the doSomething() that exists in namespace goo
+				return 0;
+			}
+			//explicit pick which namespace we want, eliminates ambiguity
+
+			//mutiple namespace blocks are allowed, (across different files)
+			//do not add custom functionalities to the std namespace;
+
+
+
 }
 
 //all variables goes into memories
