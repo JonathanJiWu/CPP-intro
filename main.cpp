@@ -1179,6 +1179,91 @@ int main()//return type, function name
 
 				return 0;
 			} // x goes out of scope and is destroyed here
+
+			//local variables have no linkage, linkage determines weather other declarations of that name refer to the same object or not
+			
+			//variable should be defined in the most limited scope, reduce the complexity of the program, because the number if active variables is reduced, also easy to see what is used
+			
+			//6.4 global variables, variables declared outside of a function
+			//by convention declare global variable at the top of the file, below the includes, use 'g' or 'g_' prefix for global variable
+			
+			//static duration: global variable are created when the program is loaded, destroyed when the program is stoped
+			//global namespace: global namespace scope
+			//zero-initialized by default
+			
+			int g_x; // no explicit initializer (zero-initialized by default)
+			int g_y{}; // zero initialized
+			int g_z{ 1 }; // initialized with value
+
+			const int g_x; // error: constant variables must be initialized
+			constexpr int g_w; // error: constexpr variables must be initialized
+
+			const int g_y{ 1 };  // const global variable g_y, initialized with a value
+			constexpr int g_z{ 2 }; // constexpr global variable g_z, initialized with a value
+			
+			//non-const global variable should be avoided altogether
+			
+			//6.5 variable shadowing(name hiding), variable of the nested block has the same name as one in the outer block, the inner block's variable hides the outer one's value
+			#include <iostream>
+
+			int main()
+			{ // outer block
+				int apples{ 5 }; // here's the outer block apples
+
+				{ // nested block
+					// apples refers to outer block apples here
+					std::cout << apples << '\n'; // print value of outer block apples
+
+					int apples{ 0 }; // define apples in the scope of the nested block
+
+					// apples now refers to the nested block apples
+					// the outer block apples is temporarily hidden
+
+					apples = 10; // this assigns value 10 to nested block apples, not outer block apples
+
+					std::cout << apples << '\n'; // print value of nested block apples
+				} // nested block apples destroyed
+
+
+				std::cout << apples << '\n'; // prints value of outer block apples
+
+				return 0;
+			} // outer block apples destroyed
+			
+			//prints:
+			//5
+			//10
+			//5
+
+			//if the nested block apples had not been defined, the name apples in the nested block would still refer to the outer block apples,
+			//so the assignment of value 10 to apples would have applied to the outer block apples:
+			int main()
+			{ // outer block
+				int apples{ 5 }; // here's the outer block apples
+
+				{ // nested block
+					// apples refers to outer block apples here
+					std::cout << apples << '\n'; // print value of outer block apples
+
+					// no inner block apples defined in this example
+
+					apples = 10; // this applies to outer block apples
+
+					std::cout << apples << '\n'; // print value of outer block apples
+				} // outer block apples retains its value even after we leave the nested block
+
+				std::cout << apples << '\n'; // prints value of outer block apples
+
+				return 0;
+			} // outer block apples destroyed
+			
+			//prints:
+			//5
+			//10
+			//10
+
+			//shadowing also goes for global variables
+			//avoid variable shadowing
 			
 			
 
