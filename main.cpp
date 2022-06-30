@@ -1122,7 +1122,65 @@ int main()//return type, function name
 			//mutiple namespace blocks are allowed, (across different files)
 			//do not add custom functionalities to the std namespace;
 
+			//nested namespaces
+			namespace foo
+			{
+				namespace goo // goo is a namespace inside the foo namespace
+				{
+					int add(int x, int y)
+					{
+						return x + y;
+					}
+				}
+			}
+			//or 
+			namespace foo::goo// goo is a namespace inside the foo namespace (C++17 style)
+			{
+				int add(int x, int y)
+				{
+					return x + y;
+				}
+			}
+			
+			//namespace aliases, temporarily shorten a long squence of namespaces into something shorter
+			namespace active = foo::goo; // active now refers to foo::goo
+			//avoid nesting namespaces
+			
+			//6.3 local variables
+			int main()
+			{
+				int i{ 5 }; // i enters scope here
+				double d{ 4.0 }; // d enters scope here
 
+				return 0;
+			} // i and d go out of scope here
+
+			//function parameters aren't defined inside the function body but they are part of the function body scope
+			//all variable names within a scope must be unique
+			void someFunction(int x)
+			{
+				int x{}; // compilation failure due to name collision with function parameter
+			}
+			
+			//storage duration, how a variable will be created/destroyed
+			//in most cases, storage duration directly determines its lifetime
+			
+			//automatic storage duration, created at the point of definition, destroyed at the end of the block they are defined in
+			
+			int main() // outer block
+			{
+				int x{ 5 }; // x enters scope and is created here
+
+				{ // nested block
+					int y{ 7 }; // y enters scope and is created here
+				} // y goes out of scope and is destroyed here
+
+				// y can not be used here because it is out of scope in this block
+
+				return 0;
+			} // x goes out of scope and is destroyed here
+			
+			
 
 }
 
