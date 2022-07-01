@@ -1264,7 +1264,35 @@ int main()//return type, function name
 
 			//shadowing also goes for global variables
 			//avoid variable shadowing
+
+			//6.6 internal linkage, limits the use of an identifier to a signle file,
+			// identifiers can be used within the single file, but not accessible from other files(not exposed to the linker)
+			// 
+			//# global variables with internal linkage(internal variables)
+			//use 'static' keyword to declare non-const global variable internal
 			
+			static int g_x; // non-constant globals have external linkage by default, but can be given internal linkage via the static keyword
+			const int g_y{ 1 }; // const globals have internal linkage by default
+			constexpr int g_z{ 2 }; // constexpr globals have internal linkage by default
+			//Const and constexpr global variables have internal linkage by default 
+			//(and thus don’t need the static keyword -- if it is used, it will be ignored).
+			
+			//"static" is storage class specifier, sets linkage and storage duration, but not scope
+			//other SCS: extern, mutable
+			
+			//internal objects defined in different files are independent entities, not a violation of the one-definition rule, each internal object only has one definition
+
+			//linkage is a property of an identifier, not of a variable
+			//# functions with internal linkage, functions default to external linkage, but can be set to internal linkage via "static"
+
+			static int add(int x, int y)// This function is declared as static, and can now be used only within this file
+										// Attempts to access it from another file via a function forward declaration will fail
+			{
+				return x + y;
+			}
+			
+			//6.7 external linage & variable forward declarations
+
 			
 
 }
