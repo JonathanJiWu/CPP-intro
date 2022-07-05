@@ -1292,9 +1292,80 @@ int main()//return type, function name
 			}
 			
 			//6.7 external linage & variable forward declarations
+			//function has external linkage by default, as long as the declaration is forwarded
+			
+			//# global variables with external linkage
+			int g_xx; // non-constant globals are external linkage by default
+			
+			extern const int g_yy; // const globals can be defined as external using extern
+			
+			//forward declaration of a variable using extern keyword
+			//a.cpp
+			int g_xxx;  //nonconst global has external linkage by default,
+			extern const int g_yyy; //extern gives g_yyy external linkage, “give this variable external linkage”
+			
+			//main.cpp
+			extern int g_xxx; //extern means int g_xxx is a forward declaration of a variable that is defined somewhere else
+			extern const int g_yyy; //extern means forward declaration, “this is a forward declaration for an external variable that is defined somewhere else”
+			//note extern has different meaning here
+			
+			//constexpr variables can be given external linkage using extern, but can not be forward declared, no point of giving them extern
+			
+			//do not give a nonconst and uninitialized global variable extern, preprocesser would take it as a forward declaration
+			
+			//functions do not need extern, complier is able to tell whether defining or forwarding by function body
 
+			// non-constant
+			int g_x; // variable definition (can have initializer if desired)
+			extern int g_x; // forward declaration (no initializer)
+
+			// constant
+			extern const int g_y{ 1 }; // variable definition (const requires initializers)
+			extern const int g_y; // forward declaration (no initializer)
+
+			//summary
+			// External global variable definitions:
+			int g_x;                       // defines non-initialized external global variable (zero initialized by default)
+			extern const int g_x{ 1 };     // defines initialized const external global variable
+			extern constexpr int g_x{ 2 }; // defines initialized constexpr external global variable
+
+			// Forward declarations
+			extern int g_y;                // forward declaration for non-constant global variable
+			extern const int g_y;          // forward declaration for const global variable
+			extern constexpr int g_y;      // not allowed: constexpr variables can't be forward declared
+
+			//# ODR, one -definition rule
+			
+			//Global variables have STATIC duration, 
+			//which means they are created when the program is started, and destroyed when it ends.
+			
+			//Global variables can have either internal or external linkage, via the static and extern keywords respectively.
+
+			//6.8 why (non-const) global variables are evil
 			
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
 }
 
 //all variables goes into memories
