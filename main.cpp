@@ -1342,9 +1342,71 @@ int main()//return type, function name
 			//Global variables can have either internal or external linkage, via the static and extern keywords respectively.
 
 			//6.8 why (non-const) global variables are evil
+			//hard to trace down the changes thus hard to debug => use local
 			
+			//static variable: allocated once and used for the entirety of the program
 
+			//# problem of initialization order
+			//static variable initialization (includes global variables) happens as a part of program startup
+			// before execution of the main() func, in two phases:
+			//1. static initialization: global variables with constexpr initializers are initialized to those values
+			//and global variables without initializers are zero-initialized
+			//2. dynamic initialization: global variables with non-constexpr initializers are initialized
 
+			//within a single file, global variables are initialized in order of the definition, 
+			//1. error if have variables dependent on the initialization value of other variable that's not initialized till later
+			//2. order of initialization across files is not defined => error
+
+			//avoid dynamic initialization whenever possible
+
+			//only good reason for non-const global variable
+			//log file, only one of the thing, and ubiquitous through out
+
+			//global variable protection
+			//1. naming prefix
+			constexpr double G_gravity{ 9.8 };
+			//2. put them in a namespace
+			namespace constants
+			{
+				constexpr double G_gravity_2{ 9.8 };
+			}
+
+			//3. encapsulate
+			//make variable static or const => only accessible from within the file it's declared in
+			//external global "access functions" to work with the variable:
+			//instead of:
+			namespace constants
+			{
+				extern const double gravity{ 9.8 }; // has external linkage, is directly accessible by other files
+			}
+			//do this
+			namespace constants
+			{
+				constexpr double gravity{ 9.8 }; // has internal linkage, is accessible only by this file
+				//Global const variables have internal linkage by default, gravity doesn’t need to be static
+			}
+
+			double getGravity() // this function can be exported to other files to access the global outside of this file
+			{
+				// We could add logic here if needed later
+				// or change the implementation transparently to the callers
+				return constants::gravity;
+			}
+
+			//4. do not use global variable in a function directly, use a argument instead
+			//instead of:
+			double instantVelocity(int time)
+			{
+				return constants::gravity * time;//dependent on the global variable gravity
+			}
+
+			//do this:
+			double instantVelocity(int time, double gravity)
+			{
+				return gravity * time;
+			}
+
+			//6.9 sharing global constants across multiple files, use inline variables
 
 
 
