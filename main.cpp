@@ -1407,8 +1407,52 @@ int main()//return type, function name
 			}
 
 			//6.9 sharing global constants across multiple files, use inline variables
+			//some software need symbolic constants to be used throughout(physics, mathematical that doesn't change)
+			//declare them once in a central location and use them whenever needed, changes will be updated
+
+			//prior to C++ 17
+			#ifndef CONSTANTS_H
+			#define CONSTANTS_H
+
+			// define your own namespace to hold constants
+			//constants.h:
+			namespace constants
+			{
+				// constants have internal linkage by default
+				constexpr double pi{ 3.14159 };
+				constexpr double avogadro{ 6.0221413e23 };
+				constexpr double myGravity{ 9.2 }; // m/s^2 -- gravity is light on this planet
+				// ... other related constants
+			}
+			#endif
+			//#include the header file wherever you need it
+
+			//main.cpp:
+			#include "constants.h" // include a copy of each constant in this file
+
+			#include <iostream>
+
+			int main()
+			{
+				std::cout << "Enter a radius: ";
+				int radius{};
+				std::cin >> radius;
+
+				std::cout << "The circumference is: " << 2.0 * radius * constants::pi << '\n';
+				//scope resolution operator (::) with the namespace name to the left, and your variable name to the right in order to access your constants in .cpp files:
+
+				return 0;
+			}
+			//downsides:
+			//1. rebuild time for large project(every change of a single const require every file that includes the const header
+			//2. large size constants use memory
 
 
+			//# constexpr variable is guaranteed to have a value available at compile time
+			//# const variable simply means that their value can not be changed(could be compile time or runtime)
+
+			//because compiler need to know the value of constexpr at compile time and forward declaration does not
+			//provide value, there for you can't forward declare constexpr variable, even they if they have external linkage
 
 
 
