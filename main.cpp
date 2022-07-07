@@ -1454,7 +1454,24 @@ int main()//return type, function name
 			//because compiler need to know the value of constexpr at compile time and forward declaration does not
 			//provide value, there for you can't forward declare constexpr variable, even they if they have external linkage
 
-
+			//## pointer, is just a value pointed to an address
+			//memory:
+			//address	 //value		//meaning										//syntax
+			//0X1000		4			value 4 lives on memory address 0X1000			int x = 4;
+			//0X1004		0X1000		points to the address 0X1000					int *ptrX = &x;
+			//0X1008
+			//0X100C
+			//0X1010
+			//0X1014
+			//0X1018
+			
+			int * ptrX = &x;//& is "the address of"
+			//integer pointer named ptrX is set to the address of x
+			
+			//now with the point of ptrX, we can access x by reference instead of by value(C++ default)
+			
+			int y = * prtX;//de-reference,  "the thing pointed to by"
+			//integer named y is set to the thing pointed to by ptrX
 
 
 
