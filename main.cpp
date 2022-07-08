@@ -1563,7 +1563,7 @@ int main()//return type, function name
 
 			//REMINDER: use std::string_view for constexpr string
 
-			//6.10 static local variables
+			//6.10 static local variables, change to static duration instead of automatic
 
 			#include <iostream>
 
@@ -1594,7 +1594,25 @@ int main()//return type, function name
 			}
 			//static duration, local(block) scope
 
-			//# static local constant
+			//# static local constant, reusing the function, variable won't be recreated and initialized everytime the function is called
+			//will give function internal state if using static local variable, impact reusebility if not careful
+
+			//# note: static on global variable giving it internal linkage( can not be exported)
+			// static on local variables giving them static duration
+
+			//6.11 Scope, duration, and linkage summary
+			
+			//# SCOPE:		where the identifier can be accessed
+			//1. block(local): local variables, function parameters, user-defined type definitions(enums, class) declared inside of a block
+			//2. file(global): global variables, functions, user defined type definitions declared inside a namespace or in the global scope
+
+			//# DURATION:	when it is created and destroyed
+			//1. automatic: local variables, function parameters
+			//2. static:	global variables, static local variables
+			//3. dynamic:	dynamically allocated variables
+
+			//# LINKAGE:	
+
 
 
 
