@@ -1447,6 +1447,9 @@ int main()//return type, function name
 			//1. rebuild time for large project(every change of a single const require every file that includes the const header
 			//2. large size constants use memory
 
+			//global constants as external variables
+			//avoid the downsides: turn these constants into external variables
+			//define constants in a .cpp file( only exit in one place), forward declaration in a header (can include by other files)
 
 			//# constexpr variable is guaranteed to have a value available at compile time
 			//# const variable simply means that their value can not be changed(could be compile time or runtime)
@@ -1454,6 +1457,55 @@ int main()//return type, function name
 			//because compiler need to know the value of constexpr at compile time and forward declaration does not
 			//provide value, there for you can't forward declare constexpr variable, even they if they have external linkage
 
+			//constants.cpp:
+			#include "constants.h"	
+			namespace constants
+			{
+				// actual global variables
+				extern const double pi{ 3.14159 };
+				extern const double avogadro{ 6.0221413e23 };
+				extern const double myGravity{ 9.2 }; // m/s^2 -- gravity is light on this planet
+			}
+
+			//constants.h:
+			#ifndef CONSTANTS_H
+			#define CONSTANTS_H
+			namespace constants
+			{
+				// since the actual variables are inside a namespace, the forward declarations need to be inside a namespace as well
+				extern const double pi;
+				extern const double avogadro;
+				extern const double myGravity;
+			}
+			#endif
+
+			main.cpp:
+			#include "constants.h" // include all the forward declarations
+			#include <iostream>
+			int main()
+			{
+				std::cout << "Enter a radius: ";
+				int radius{};
+				std::cin >> radius;
+
+				std::cout << "The circumference is: " << 2.0 * radius * constants::pi << '\n';
+
+				return 0;
+			}
+			//downsides:
+			//1. in constants defined in they are compile time variables, but other file 
+			//can only see the forward declaration( doesn't define a const value, must resolved by linker)
+			//means they are treated as runtime constants, can't be used 
+			// anywhere requaires a complie-time constant(array size)
+			//2. can't optimize as much
+
+			//compiler compiles each file individually, it can only see variable
+			//definitions appeared in that exact file(and included headers)						
+			//thus, constexpr can not be separated into header and source file
+			// have to be defined in the header file
+			// 
+			// BEST PRACTICE: define consts in headers, if error, move some or all into cpp
+			// 
 			//## pointer, is just a value pointed to an address
 			//memory:
 			//address	 //value		//meaning										//syntax
@@ -1473,7 +1525,76 @@ int main()//return type, function name
 			int y = * prtX;//de-reference,  "the thing pointed to by"
 			//integer named y is set to the thing pointed to by ptrX
 
+			//# global constants as inline variables, C++17
+			//inline: multiple definitions are allowed, without violating the ODR rule
+			//the linker will consolidate all inline, allow us to define variables in a header
+			
+			//constants.h:
+			#ifndef CONSTANTS_H
+			#define CONSTANTS_H
+			// define your own namespace to hold constants
+			namespace constants
+			{
+				inline constexpr double pi{ 3.14159 }; // note: now inline constexpr
+				inline constexpr double avogadro{ 6.0221413e23 };
+				inline constexpr double myGravity{ 9.2 }; // m/s^2 -- gravity is light on this planet
+				// ... other related constants
+			}
+			#endif
 
+			//main.cpp:
+			#include "constants.h"
+
+			#include <iostream>
+
+			int main()
+			{
+				std::cout << "Enter a radius: ";
+				int radius{};
+				std::cin >> radius;
+
+				std::cout << "The circumference is: " << 2.0 * radius * constants::pi << '\n';
+
+				return 0;
+			}
+
+			//BEST PRACTICE:If you need global constantsand your compiler is C++17 capable, 
+			//prefer defining inline constexpr global variables in a header file.
+
+			//REMINDER: use std::string_view for constexpr string
+
+			//6.10 static local variables
+
+			#include <iostream>
+
+			void incrementAndPrint()
+			{
+				static int s_value{ 1 }; //first time variable definition is encountered and 
+				//skipped on subsequnet calls
+				// static duration via static keyword.  This initializer is only executed once.
+				++s_value;
+				std::cout << s_value << '\n';
+			} // s_value is not destroyed here, but becomes inaccessible because it goes out of scope
+
+			int main()
+			{
+				incrementAndPrint();
+				incrementAndPrint();
+				incrementAndPrint();
+
+				return 0;
+			}//When s_value goes out of scope at the end of the function, it is not destroyed.
+			//prints: 2, 3, 4
+
+			//most common use of static (duration) local variable is unique ID generator
+			int generateID()
+			{
+				static int s_itemID{ 0 };
+				return s_itemID++; // makes copy of s_itemID, increments the real s_itemID, then returns the value in the copy
+			}
+			//static duration, local(block) scope
+
+			//# static local constant
 
 
 
