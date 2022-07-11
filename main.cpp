@@ -1611,7 +1611,23 @@ int main()//return type, function name
 			//2. static:	global variables, static local variables
 			//3. dynamic:	dynamically allocated variables
 
-			//# LINKAGE:	
+			//# LINKAGE:	wheather multiple declarations of a identifier refer to the same identifier or not
+			//1. no linkage:		identifier only refers to itself
+			//	-	local variables, user-defined type definitions declared inside a block(enum, class)
+			//2. internal linkage	can be accessed anywhere within the file declared
+			//	-	static global variables, static functions, const global variables, functions declared inside a unnamed namespace, user-defined type definitions declared inside a unnamed namespace(enum, class)
+			//3. external linkage	can be accessed anywhere within the file declared, and other files (via forward declaration
+			//	-	functions, non-const global variables, extern const global variables, inline const global variables, user-defined type definitions declared inside a namespace or in the global scope
+
+			//6.12 using declarations and using directives
+			//# qualified name & unqualified names: std::cout, obj.x, ptr->y VS cout
+			//using declaration: using std::cout; safe to use inside blocks
+			//using directive:	using namespace std; [AVOID], cause ambiguity, harder to read
+			//both bend to scoping rules
+
+			//6.13 inline functions
+
+
 
 
 
