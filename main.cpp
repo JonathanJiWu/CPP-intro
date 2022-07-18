@@ -1627,9 +1627,33 @@ int main()//return type, function name
 
 			//6.13 inline functions
 
+			//## lambda
+			[=]()mutable throw () -> int 
+			{
+				int n = x + y;
+				x = y;
+				y = n;
+				return n;
+			}
 
+			// [] capture cause, capture( access ) variables from surounding scope
+			[&] //capture by reference
+			[=] //capture by value
+			[] //access no variable in the encolsing scope
 
+			//## reference, alias for another variable, a shadow, copy, changes if master changes
+			//1. can not be NULL, must be tied to another variable
+			//2. can not be changed once assigned to a variable, it's forever
+			//3. can not do math , or indexed, with reference
+			//4. can not reference to reference
+			//-PRO: 
+			//less overhead, easier to write
+			//is actually a pointer under the hood, compiler will handle it
+			int x = 1;
+			int& rX = x;
 
+			//## pointers, 
+			int* pX = &x;
 
 
 
