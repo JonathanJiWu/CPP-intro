@@ -1625,8 +1625,6 @@ int main()//return type, function name
 			//using directive:	using namespace std; [AVOID], cause ambiguity, harder to read
 			//both bend to scoping rules
 
-			//6.13 inline functions
-
 			//## lambda
 			[=]()mutable throw () -> int 
 			{
@@ -1657,7 +1655,19 @@ int main()//return type, function name
 
 
 
+			//6.13 inline functions, inline expansion: small function that's call often
+			//downside of modular functions: performance overhead every time it's used
+			
+			//if the body of the function being expanded takes more instructions than the function call being replaced, 
+			//then each inline expansion will cause the executable to grow larger.
+			//Larger executables tend to be slower(due to not fitting as well in caches).
 
+			//keyword inline is not used anymore, premature optimization
+			// inline expansion is actually determined per function call
+
+			//now use inline keyword to make multiple definition of functions legal, usually in header file
+
+			//# 6.14 constexpr $ consteval functions
 
 
 
