@@ -1668,8 +1668,16 @@ int main()//return type, function name
 			//now use inline keyword to make multiple definition of functions legal, usually in header file
 
 			//# 6.14 constexpr $ consteval functions
+			//constexpr are evalued at compile time
 
-
+			//use constexpr keyword for function's return type to make it compile time value
+			constexpr int greater(int x, int y) // now a constexpr function
+			{
+				return (x > y ? x : y);
+			}
+			//must have constexpr arguments, constexpr variable or literals
+			
+			
 
 
 
