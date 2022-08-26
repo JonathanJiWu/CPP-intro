@@ -1677,7 +1677,11 @@ int main()//return type, function name
 			}
 			//must have constexpr arguments, constexpr variable or literals
 			
-			
+			//## friend function -- access private directly without using object of that class
+			//defined outside the class scope, but has the right to access all private & protected members of the class
+			//not member functions
+
+
 
 
 
