@@ -1667,7 +1667,7 @@ int main()//return type, function name
 
 			//now use inline keyword to make multiple definition of functions legal, usually in header file
 
-			//# 6.14 constexpr $ consteval functions
+			//# 6.14 constexpr & consteval functions
 			//constexpr are evalued at compile time
 
 			//use constexpr keyword for function's return type to make it compile time value
@@ -1676,12 +1676,56 @@ int main()//return type, function name
 				return (x > y ? x : y);
 			}
 			//must have constexpr arguments, constexpr variable or literals
+
+			//if arguments aren't constexpr, the function will be valued at runtime even the return type is of it is constexpr
+			//return non-constexprs
+
+			//ONLY when a constant expression is REQUIRED: constexpr functions will for sure evalue compile time
+			//other wise is random
+			//in better wording:
+			//A constexpr function that is eligible to be evaluated at compile-time will only be evaluated at compile-time
+			//if the return value is used where a constant expression is required. Otherwise, compile-time evaluation is not guaranteed.
+
+			//a constexpr function is better thought of as “can be used in a constant expression”, not “will be evaluated at compile-time”.
+
+			//# force functions to evaluate at runtime in C++20
+			//
+			consteval int greater(int x, int y) // function is now consteval, must evaluate at compile-time
+			{
+				return (x > y ? x : y);
+			}
 			
+			//# helper function to force constexpr functions to be evaluated at compile time(so we have flexibility
+			#include <iostream>
+
+			// Uses abbreviated function template (C++20) and `auto` return type to make this function work with any type of value
+			// See 'related content' box below for more info (you don't need to know how these work to use this function)
+			consteval auto compileTime(auto value)
+			{
+				return value;
+			}
+
+			constexpr int greater(int x, int y) // function is constexpr
+			{
+				return (x > y ? x : y);
+			}
+
+			int main()
+			{
+				std::cout << greater(5, 6) << '\n';              // may or may not execute at compile-time
+				std::cout << compileTime(greater(5, 6)) << '\n'; // will execute at compile-time
+
+				int x{ 5 };
+				std::cout << greater(x, 6) << '\n';              // we can still call the constexpr version at runtime if we wish
+
+				return 0;
+			}
+
 			//## friend function -- access private directly without using object of that class
 			//defined outside the class scope, but has the right to access all private & protected members of the class
 			//not member functions
 
-
+			//# 6.15 — Unnamed and inline namespaces
 
 
 
