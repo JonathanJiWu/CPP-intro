@@ -1726,9 +1726,50 @@ int main()//return type, function name
 			//not member functions
 
 			//# 6.15 — Unnamed and inline namespaces
+			namespace // unnamed namespace / anonymous namespace
+			{
+				void doSomething() // can only be accessed in this file
+				{
+					std::cout << "v1\n";
+				}
+			}
+			//internal linkage, make everything inside unnamed namespace can't be seen outside the file it's defined in
+			//effectively the same with static function
+			static void doSomething() // can only be accessed in this file, same
+			{
+				std::cout << "v1\n";
+			}
 
+			//can use to make user-defined-types local to the file
 
+			//# inline namespace, version control for functions
+			#include <iostream>
 
+			inline namespace v1 // declare an inline namespace named v1
+			{
+				void doSomething()
+				{
+					std::cout << "v1\n";
+				}
+			}
+
+			namespace v2 // declare a normal namespace named v2
+			{
+				void doSomething()
+				{
+					std::cout << "v2\n";
+				}
+			}
+
+			int main()
+			{
+				v1::doSomething(); // calls the v1 version of doSomething()
+				v2::doSomething(); // calls the v2 version of doSomething()
+
+				doSomething(); // calls the inline version of doSomething() (which is v1)
+
+				return 0;
+			}
 
 
 
