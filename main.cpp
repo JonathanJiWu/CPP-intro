@@ -1771,9 +1771,50 @@ int main()//return type, function name
 				return 0;
 			}
 
+			//# 6.x
+			//Avoid dynamic initialization of static variables whenever possible.
 
+			//	An identifier’s linkage determines whether other declarations of that name refer to the same object or not.
+			//Local variables have no linkage.Identifiers with internal linkage can be seen and used within a single file, 
+			//but it is not accessible from other files.Identifiers with external linkage can be seenand used both from the file in which it is defined, 
+			//and from other code files(via a forward declaration).
 
+			//	Local variables can be given static duration via the static keyword.
 
+			//	consteval vs constexpr functions
+
+			#ifndef <token>
+							/* code */
+			#else
+							/* code to include if the token is defined */
+			#endif
+
+			//	Your go - to for global constants in C++17 should just be :
+			inline constexpr int CONSTANT = 42;
+
+			//static variables in local
+			#include <iostream>
+
+			// note: It should be mentioned that the following function is poorly designed for two reasons:
+			// 1) There's no way to reset s_passes, so the function can't be reused in a program
+			// 2) The function inscrutably returns a different value after a certain number of calls
+			bool passOrFail()
+			{
+				static int s_passes{ 3 };
+				--s_passes;
+				return (s_passes >= 0);
+			}
+
+			int main()
+			{
+				std::cout << "User #1: " << (passOrFail() ? "Pass\n" : "Fail\n");
+				std::cout << "User #2: " << (passOrFail() ? "Pass\n" : "Fail\n");
+				std::cout << "User #3: " << (passOrFail() ? "Pass\n" : "Fail\n");
+				std::cout << "User #4: " << (passOrFail() ? "Pass\n" : "Fail\n");
+				std::cout << "User #5: " << (passOrFail() ? "Pass\n" : "Fail\n");
+
+				return 0;
+			}
 			
 }
 
