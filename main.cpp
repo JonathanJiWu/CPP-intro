@@ -1800,7 +1800,7 @@ int main()//return type, function name
 			// 2) The function inscrutably returns a different value after a certain number of calls
 			bool passOrFail()
 			{
-				static int s_passes{ 3 };
+				static int s_passes{ 3 };//static local variable's change will be kept track through out the runtime
 				--s_passes;
 				return (s_passes >= 0);
 			}
@@ -1816,6 +1816,83 @@ int main()//return type, function name
 				return 0;
 			}
 			
+			//# 7.1 control flow
+			//execution path, top to botton of main()
+
+			//straight-line program, same path everytime it runs
+
+			//control flow statements, if(), causes branching
+
+			/*Conditional statements	Conditional statements cause a sequence of code to execute only if some condition is met.If, switch
+				Jumps	Jumps tell the CPU to start executing the statements at some other location.Goto, break, continue
+				Function calls	Function calls are jumps to some other locationand back.Function calls, return
+				Loops	Loops tell the program to repeatedly execute some sequence of code zero or more times, until some condition is met.While, do - while, for, ranged - for
+				Halts	Halts tell the program to quit running.std::exit(), std::abort()
+				Exceptions	Exceptions are a special kind of flow control structure designed for error handling.Try, throw, catch*/
+
+			// # 7.2 if & blocks
+			//always use blocks, easier to debug
+
+			//variables declared inside of a conditional statement block will be destroyed outside the block
+
+			//# 7.3 common if problems
+			//nested ifs, always closure, avoid the dangling else problem, the else will snap on to the last if
+			//or the flatten them, if, else if, and else
+
+			//do not terminate if statements with ;, anything follows will always execute, a empty line with ; called null statement
+
+			//#7.4 switch
+			switch (x)//switch condition, this expression only evaluated once, can only be integral or enumerated
+			{
+			case 1://case label
+				std::cout << "One";
+				return;//this will exit the function, break will just exit switch statement
+			case 2:
+				std::cout << "Two";
+				return;//path will fall though if there's no return or break
+				[[fallthrogh]];//attribute
+			case 3:
+				std::cout << "Three";
+				return;
+			case 4://case scope
+			{ // note addition of explicit block here
+				int x{ 4 }; // okay, variables can be initialized inside a block inside a case
+				std::cout << x;
+				break;
+			}
+			default://default label, optional, but can be only one, and placed last
+				std::cout << "Unknown";
+				return;
+			}//preferred over if-else chain
+
+			//# 7.5 fallthrough and scoping
+
+			//# 7.6 goto statements, jumping
+			//statement labels must be associated with a statement
+			//avoid using goto
+
+			//# 7.7 loops while statement
+
+			//The only way to exit an infinite loop is through a return statement, a break statement, an exit statement, 
+			//a goto statement, an exception being thrown, or the user killing the program.
+			//Loop variables
+
+			//Each time a loop executes, it is called an iteration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 //all variables goes into memories
