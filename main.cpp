@@ -1879,13 +1879,97 @@ int main()//return type, function name
 
 			//Each time a loop executes, it is called an iteration.
 
+			while (true)//intentional infinite loop
+			{
+				//statments
+			}
 
+			while (userCount)//make counter/loop variable descriptive, counter need to be signed
+			{
 
+			}
 
+			//# nested loops
 
+			//# 7.8 do while statements
+			//happens at least once
+			//just use while loops
 
+			// #7.9 for statements, for loops
+			//for (init-statement; condition; end-expression)
+			//statement;
 
+			//avoid != in loop conditions could be jumped over
 
+			//be consist with < and <=, would be off by one
+
+			//# multiple counters
+			int main()
+			{
+				for (int x{ 0 }, y{ 9 }; x < 10; ++x, --y)
+					//about the only place in C++ where defining multiple variables in the same statement
+					//and use of the comma operator is considered an acceptable practice.
+					std::cout << x << ' ' << y << '\n';
+
+				return 0;
+			}
+
+			//# nested for loops
+			int main()
+			{
+				for (char c{ 'a' }; c <= 'e'; ++c) // outer loop on letters
+				{
+					std::cout << c; // print our letter first
+
+					for (int i{ 0 }; i < 3; ++i) // inner loop on all numbers
+						std::cout << i;
+
+					std::cout << '\n';
+				}
+
+				return 0;
+			}//For each iteration of the outer loop, the inner loop runs in its entirety
+
+			//Write a for loop that prints every even number from 0 to 20.
+
+			//my answer 
+			for (int counter{ 0 }; counter <= 21; counter++)//wrong here
+			{
+				if (counter % 2 == 0) 
+				{
+					std::cout << counter;
+				}
+			}
+			//textbook
+			for (int count{ 0 }; count <= 20; count += 2)
+				std::cout << count << '\n';
+
+			//Write a function named sumTo() that takes an integer parameter named value, and returns the sum of all the numbers from 1 to value.
+
+			//my
+			int sumTo(int intakeNum)
+			{
+				for (int counter {1}; counter <= intakeNum; counter++)
+				{
+					//1 + 2 + 3 +4 +5
+					int counterSum{ 0 };//this is wrong, died outside of the loop, cant return it later
+					counterSum += counter;
+
+				}
+				return counterSum;
+			}
+
+			//textbook
+			int sumTo(int value)
+			{
+				int total{ 0 };
+				for (int count{ 1 }; count <= value; ++count)
+					total += count;
+
+				return total;
+			}
+
+			//7.10 Break and continue
 
 
 
