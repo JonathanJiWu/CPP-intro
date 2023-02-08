@@ -1971,6 +1971,27 @@ int main()//return type, function name
 
 			//7.10 Break and continue
 
+			//halt, exiting program early
+			//# std::exit(), std::atexit()
+			///normal termination of the program will call std::exit() by default, 
+			//using exit() explicitly will stop the program immediately and destroy all static storage variables but not locals
+
+			//std::atexit() allow us to specifically add functions to be called on termination via exit()
+			std::atexit(cleanup); // note: we use cleanup rather than cleanup() since we're not making a function call to cleanup() right now
+			//the function passed into atexit() must take no parameter and no return val
+
+			//# quick_exit() && at_quick_exit() -- for multithearding to avoid crash
+
+			//# std::abort() && std::terminate()
+			//abort() causes program terminate abnormally
+
+			//terminate() is typically used in conjunction with exceptions, by default, terminate() calls abort()
+
+			//when should you use a halt: almost never
+			//use exceptions for error handling safely
+
+
+
 
 
 
