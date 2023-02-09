@@ -1970,8 +1970,17 @@ int main()//return type, function name
 			}
 
 			//7.10 Break and continue
+			//break prevents fallthrough in switched, can break a loop
 
-			//halt, exiting program early
+			//# break vs return, break terminates loop or switch; return terminates the entire function of that loop lived in, return to the caller
+
+			//# continue statement, jump to the very bottom of the loop, anything under the continue line will not execute
+			//might cause infinite loop, with while/do-while
+
+			//# early return, not the last return statement in a function
+			//use with caution, complicates the logic, and might make it harder to read
+
+			//7.11 halt, exiting program early
 			//# std::exit(), std::atexit()
 			///normal termination of the program will call std::exit() by default, 
 			//using exit() explicitly will stop the program immediately and destroy all static storage variables but not locals
