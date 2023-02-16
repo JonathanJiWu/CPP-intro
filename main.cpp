@@ -1999,6 +1999,16 @@ int main()//return type, function name
 			//when should you use a halt: almost never
 			//use exceptions for error handling safely
 
+			//# 7.12 code testing
+			//1. write code in small & well defined units, compile often and test as you go.
+			//2. preserving tests, keep the informal testing( comment things out) for later
+			//3. automating tests, make the testing into a function, just not call it till you want to
+			//make it explicit for which part is not working (spell it out in the function) 
+			//4. unit testing frameworks, lot of them, 3rd party stuff
+			//5. integration testing, the whole thing work? OK
+
+
+
 
 
 
