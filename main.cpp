@@ -2007,6 +2007,14 @@ int main()//return type, function name
 			//4. unit testing frameworks, lot of them, 3rd party stuff
 			//5. integration testing, the whole thing work? OK
 
+			//# 7.13 code coverage(in testing)
+			//statement coverage, how much of the statement of the function is tested?
+			//branch coverage, is all branches tested? each if statement splits into 2 branches
+			//loop coverage, test 0, 1, and 2 iteration of the loop, that usually will cover it
+			//categories of input, edge cases comes to specific types of the user input or parameters
+
+
+
 
 
 
