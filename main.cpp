@@ -2013,9 +2013,17 @@ int main()//return type, function name
 			//loop coverage, test 0, 1, and 2 iteration of the loop, that usually will cover it
 			//categories of input, edge cases comes to specific types of the user input or parameters
 
+			//# what's the difference between ++count and count++?
 
+			//# 7.14 common errors
+			//logical, loops, if statements, exact numbers comes to counters/i/count/num
+			// infinite loops, 
+			// accidental null statements, terminate if statements prematurely, the trialling statement will always execute
+			// 
+			//# operator precedence
+			//! has higher precedence than >, < and so on, ! x > y is actually writing (!x) > y
 
-
+			//do not compare floats, do not divid ints
 
 
 
