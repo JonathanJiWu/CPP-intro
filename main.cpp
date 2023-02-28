@@ -2025,6 +2025,15 @@ int main()//return type, function name
 
 			//do not compare floats, do not divid ints
 
+			//# 7.15 detecting & handling errors
+			//error occur due to faulty assumptions made by programmers
+			//should also test sad path, things will go wrong
+
+			//1. handle errors in within the function, retry until successful || cancel the operation
+			//2. pass the error back to the caller
+			//3. fatal errors, use std::exit() to halt and surface back to main() t0 return non-zero value
+			//4. exceptions, C++ way of pass error back to the caller
+
 
 
 
