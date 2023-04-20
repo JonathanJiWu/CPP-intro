@@ -2034,11 +2034,72 @@ int main()//return type, function name
 			//3. fatal errors, use std::exit() to halt and surface back to main() t0 return non-zero value
 			//4. exceptions, C++ way of pass error back to the caller
 
+			//# 7.16 std::cin and handling invalid input
+			//if take user input, user WILL misuse you program, anticipate that!
+
+			//# buffer:
+			//	piece of memory set aside for storing data temporarily while it's moved from place to places
+			
+			//when using >> operator to put user input into a variable it's called a "extraction"
+			//when user enters input to a extraction operation, that data is placed in a buffer inside of std::cin
+			//during extraction, it looks for data in the input buffer, 
+			//	if there's data
+			//	{
+			//		that data is used for extraction
+			//	}
+			//	else if there's no data
+			//	{
+			//		user is asked to input data for extraction
+			//		when user presses enter, and '\n' is placed in the input buffer
+			//	}
+			//	else if input data does not match the type of the variable being extracted to
+			//	{
+			//		extraction fails
+			//	}
+
+			//# input validation
+			//1. inline validation
+			//2. post-entry validation
+			//3. handling error cases
+
+			//# get the valid input
+			//use a while loop to ask for a input untill if get a valid one
 
 
 
+			//# Template class
+			//A template class is a C++ programming feature that allows you to define a generic class that can be used with different data types.
+
+			//When you define a template class, you define the structure of the class, but you don't specify what data types it should be used with. 
+			// Instead, you can use the template class with any data type you want when you create an instance of the class.
+			//	For example, you might create a template class for a linked list data structure.The linked list could be used to store integers, strings, or any other data type.
+			// When you create an instance of the linked list class, you specify the data type that you want to use with the class.This allows you to reuse the same class implementation for different data types without having to write separate classes for each type.
+			//	In simpler terms, a template class is like a blueprint for a generic class that can be customized to work with different data types.
+
+			template<typename T>//telling the compiler that this is a blueprint for a class that can work 
+			//with any type of data. When you actually use the template class, you replace T with the actual type 
+			//you want to use.
+			class MyContainer {
+			private:
+				T data;
+			public:
+				MyContainer(T data) : data(data) {}
+				T get_data() { return data; }
+			};
+
+			MyContainer<int> container1(42);
+			std::cout << container1.get_data() << std::endl; // Output: 42
+
+			MyContainer<std::string> container2("Hello, world!");
+			std::cout << container2.get_data() << std::endl; // Output: Hello, world!
+
+			
 
 
+			//# Structs & class: 
+			// Structs are similar to classes, but their members are public by default, 
+			//and they do not have access specifiers. They are often used for simple data structures that 
+			//do not require more complex behavior.
 
 
 
